@@ -1,0 +1,57 @@
+Wallpaper engine folder:
+
+Kuanbot_Id:OTMwMTgxNjkyNTkxODMzMTE4.GHiKu1.9WBTP-Xfq__m_0qq_mNsNbJYjDDg_4JdL6KSp8
+Mayaka_Id:OTgxMTkzMzQwOTI4Mjc4NTQ4.GQmg4X.z7umNx3UnU322FldnGAgCTbobiUhNXURm50d1Q
+
+SQL{
+  Una base de datos local con Xampp.
+  En una tabla llamada USERS. COLUMNAS: ID,name,discord_id
+  En una tabla llamada FOLDERS. COLUMNAS: ID,USERS.ID,name,[WALLPAPERS.ID]
+  En una tabla llamada WALLPAPERS. COLUMNAS: ID,url,title,img_url
+
+  Hacer una tabla intermedia entre folders y wallapapers con una id combinada, que sera la wallpapers.id+folders.id.
+  De esa manera se crea una combinacion unica que no se puede repetir ya que un folder no puede tener el mismo wallpaper dos veces o más.
+  En una tabla llamada folders_wallpapers. COLUMNAS: ID, folder_id, wallpaper_id.
+}
+
+/wallpaper{
+  Los usuarios deben de poder crearse un perfil en el cual los nombres no se repitan.
+  El usuario debe poder crear folders (dentro de un folder mas grande imaginario llamado "folder"+name)
+
+  Se deben poder agregar elementos a los folders, los cuales deben ser wallpapers de Wallpaper Engine.
+  Para agregar un folder pueden poner el link de la workshop o poner el numero ID del wallpaper.
+  Si el wallapaper que se agrega no se tiene en la base de datos entonces se busca y se llena la tabla con
+  scrapping de la workshop.
+  Si el wallpaper ya se habia agregado antes entonces se debe de encontrar en la tabla de wallpapers y se actualiza
+  el array de las ID de los folders a los que pertenece.
+}
+
+/lookFor{
+  Cualquier usuario debe de ser capaz de ver el folder de otro usuario con este comando.
+  [Luego se podria agregar la opcion de poder poner que un folder sea privado y que uncamente el creador pueda verlo]
+  
+  Este comando recibe el nombre de quien creo el folder
+  Y te deja escoger entre visualizar los distintos folders que esta persona tiene.
+
+  O la ID del folder y te abre ese folder en especifico automaticamente.
+
+
+  //generar embed
+  /*Va a recibir el objeto user{
+    username: "Demurest",
+    userID: 1,
+    folders: [lolis,weas,To Love Ru], //quizas los folders deberian ser botones (o dar la opcion de hacer que en tu perfil aparezcan como que 3 folders que tu quieres)
+  }*/
+}
+
+UI{
+  La interfaz cuando se abra el folder.
+  En la version de discord va a ser con el embed y poder pasar entre uno y otro atraves de reacciones.
+
+  Para poder hacer "log in" tomamos los datos de la persona la cual llamo al comando y vemos si su id de discord
+  coincide con la de algun usuario de la base de datos.
+  
+  Para las personas que no tengan una id que coincida les vamos a poner un mensaje que deben darse de alta.
+  pero eso solo si quieren crear un folder o algo asi.
+  Las personas que nomas busquen un folder de alguien mas no necesitan tener un usuario.
+}
