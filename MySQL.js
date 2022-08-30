@@ -3,9 +3,9 @@ const mysql = require('mysql');
 
 async function mysqlCommands(name,url,discord_id,commandName){
     const connection = mysql.createConnection({
-        host: 'localhost',
-        user:'Jara',
-        password:'toor',
+        host: '',
+        user:'',
+        password:'',
         database:'wallpapersdb'
     })
     
